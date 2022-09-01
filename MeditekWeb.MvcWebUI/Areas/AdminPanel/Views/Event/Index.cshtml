@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_Layout.cshtml";
+}
+@using MeditekWeb.Models.Entity
+@model List<Event>
+@section styles{
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/AdminPanelContent/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/AdminPanelContent/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/AdminPanelContent/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+}
+
+
+<div class="col-md-2"></div>
+<div class="col-md-9">
+    <a class="btn btn-primary my-3" href="/new-event">Etkinlik Ekle</a>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Etkinlik DataTable</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Etkinlik Resmi</th>
+                        <th>Etkinlik İsmi</th>
+                        <th>Etkinlik Açıklama</th>
+                        <th>Etkinlik Metin</th>
+                        <th>Etkinlik Tarihi</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><img style="width:90px;height:90px" src="@item.EVENT_IMG" /></td>
+                            <td>@item.EVENT_NAME</td>
+                            <td>@item.EVENT_DESCRIPTION</td>
+                            <td>@item.EVENT_TEXT</td>
+                            <td>@item.EVENT_DATETIME</td>
+                            <td>
+                                <form action="/admin-event" method="post">
+                                    <input type="hidden" name="eventId" value="@item.ID" />
+                                    <button type="submit" class="btn btn-warning">Sil</button>
+                                </form>
+                            
+                            </td>
+                            
+
+                        </tr>
+
+
+                    }
+
+
+                </tbody>
+
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+
+</div>
+@section scripts{
+
+
+    <script>
+        $(function () {
+
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+
+    </script>
+    <!-- DataTables  & Plugins -->
+    <script src="/AdminPanelContent/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/AdminPanelContent/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/AdminPanelContent/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/AdminPanelContent/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/AdminPanelContent/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/AdminPanelContent/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/AdminPanelContent/plugins/jszip/jszip.min.js"></script>
+    <script src="/AdminPanelContent/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="/AdminPanelContent/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="/AdminPanelContent/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/AdminPanelContent/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/AdminPanelContent/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
+
+} 

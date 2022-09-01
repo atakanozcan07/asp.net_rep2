@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Abstract\ICouncilRepository.cs" />
+    <Compile Remove="Abstract\IPersonRepository.cs" />
+    <Compile Remove="Concrete\CouncilRepository.cs" />
+    <Compile Remove="Concrete\PersonRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MeditekWeb.Models\MeditekWeb.Models.csproj" />
+  </ItemGroup>
+
+</Project>

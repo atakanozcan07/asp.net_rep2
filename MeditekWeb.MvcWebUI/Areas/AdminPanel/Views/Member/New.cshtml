@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewData["Title"] = "New";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_Layout.cshtml";
+}
+@model List<SelectListItem>
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@section styles{
+
+    <link href="~/AdminPanelContent/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.css" rel="stylesheet" />
+    <link href="~/AdminPanelContent/plugins/sweetalert2/sweetalert2.css" rel="stylesheet" />
+}
+<div class="col-md-3"></div>
+<div class="col-md-9">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Üye Ekleme</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form>
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Üye İsmi</label>
+                    <input type="text" class="form-control" id="txtname" placeholder="Üye İsmi Giriniz...">
+                    <label>Üye Soyismi</label>
+                    <input type="text" class="form-control" id="txtsurname" placeholder="Üye Soyismi Giriniz...">
+                </div>
+                <div class="form-group">
+                    <label>Üye Linkedin</label>
+                    <input type="text" class="form-control" id="txtlinkedin" placeholder="Üye Linkedin Linki...">
+                </div>
+                <div class="form-group">
+                    <label>Üye E-Mail</label>
+                    <input type="text" class="form-control" id="txtmail" placeholder="Üye E-Mail">
+                </div>
+                <div class="form-group">
+                    <label>Üye Görevi</label>
+                    <input type="text" class="form-control" id="txtassignment" placeholder="Üye Görevi">
+                </div>
+                <select id="selectedid" asp-items="Model" class="form-select" aria-label="Default select example">
+                    
+                </select>
+                <div class="form-group">
+                    <label for="exampleInputFile">Fotoğraf Seç</label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="fotofile">
+                            <label class="custom-file-label">Üye Fotoğrafı Seçiniz...</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button id="btnclicked" type="button" class="btn btn-primary">Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#btnclicked").click(function () {
+                var formData = new FormData();
+                var file = $("#fotofile")[0].files[0];
+                formData.append("photo", file);
+                $.ajax({
+                    url: "/member-photo-upload",
+                    method: "post",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response.isOk) {
+                            
+                            var vm = {
+                                MEMBER_NAME: $("#txtname").val(),
+                                MEMBER_SURNAME: $("#txtsurname").val(),
+                                MEMBER_LINKEDIN: $("#txtlinkedin").val(),
+                                MEMBER_ASSIGNMENT: $("#txtassignment").val(),
+                                MEMBER_MAIL: $("#txtmail").val(),
+                                MEMBER_IMG: response.photoPath,
+                                TEAM_ID: $("#selectedid").val()
+                                
+                                
+                            };
+                            $.ajax({
+                                url: "/new-member",
+                                method: "post",
+                                dataType: "json",
+                                data: { vm: vm },
+                                success: function (resp) {
+                                    if (resp.isOk) {
+                                        Swal.fire({
+                                            position: 'top-center',
+                                            icon: 'success',
+                                            title: 'Your work has been saved',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                    }
+
+                                }
+
+                            });
+
+                        }
+                        else {
+                            alert(response.message);
+
+
+                        }
+
+
+                    }
+
+                });
+
+
+            });
+
+        });
+
+
+
+    </script>
+    <!-- jQuery -->
+    <script src="/AdminPanelContent/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/AdminPanelContent/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/AdminPanelContent/dist/js/adminlte.min.js"></script>
+    <script src="/AdminPanelContent/plugins/sweetalert2/sweetalert2.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+}
+

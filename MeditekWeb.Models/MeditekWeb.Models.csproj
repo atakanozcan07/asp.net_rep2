@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Enum\**" />
+    <EmbeddedResource Remove="Enum\**" />
+    <None Remove="Enum\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entity\Council.cs" />
+    <Compile Remove="Entity\Person.cs" />
+    <Compile Remove="Entity\Squat.cs" />
+  </ItemGroup>
+
+</Project>

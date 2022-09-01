@@ -1,0 +1,335 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using MeditekWeb.Models.Entity
+@model List<Unit>
+@section styles{
+
+
+    
+
+}
+<!-- Preloader -->
+<div class="spinner-wrapper">
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>
+<!-- end of preloader -->
+<!-- Header -->
+<header id="header" class="header">
+    <div class="header-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-container">
+                        <h1><span id="js-rotating">Biz Kimiz?, Misyonumuz, Vizyonumuz</span></h1>
+                        <p class="p-heading p-large">
+
+                            Misyonumuz :
+
+
+                            Başta mühendislik, fen bilimleri ve temel bilimler alanlarında öğrenim gören öğrencileri, sağlık başlığı altında toplayarak kendi disiplinleri doğrultusunda medikal alanda donanım sahibi bireyler haline getirmek. Yeni ürünler ortaya koyarak bu alanda Türkiye’yi temsil etmek.
+
+                            Vizyonumuz :
+
+                            MEDİTEK kulübü, farklı disiplinlerden öğrencileri (yazılım, genetik, makine, elektronik, biyoloji, kimya, tıp vs.) bir araya getirip sağlık alanına yönlendirerek medikal teknoloji alanındaki eksiklikleri gidermeyi amaçlamış bir kuruluştur.
+                        </p>
+                        <a class="btn-solid-lg page-scroll" href="#intro">İletişim</a>
+                    </div>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of header-content -->
+</header> <!-- end of header -->
+<!-- end of header -->
+<!-- About -->
+<div id="about" class="counter">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-xl-6">
+                <div class="image-container">
+                    <img class="img-fluid" src="images/mediteklogo.png" alt="alternative">
+                </div> <!-- end of image-container -->
+            </div> <!-- end of col -->
+            <div class="col-lg-7 col-xl-6">
+                <div class="text-container">
+                    <div class="section-title">Hakkımızda</div>
+                    <h2>Lorem ipsum dolor sit.</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam mollitia eligendi iure aspernatur asperiores animi suscipit dolore, ad ullam fuga!</p>
+                    <ul class="list-unstyled li-space-lg">
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">Lorem ipsum dolor sit amet.</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">Lorem ipsum dolor sit amet.</div>
+                        </li>
+                    </ul>
+
+                    <!-- Counter -->
+                    <div id="counter">
+                        <div class="cell">
+                            <div class="counter-value number-count" data-count="231">1</div>
+                            <div class="counter-info">'Den<br>Fazla<br>Üye</div>
+                        </div>
+                        <div class="cell">
+                            <div class="counter-value number-count" data-count="231">1</div>
+                            <div class="counter-info">'Den<br>Fazla<br>Üye</div>
+                        </div>
+                        <div class="cell">
+                            <div class="counter-value number-count" data-count="231">1</div>
+                            <div class="counter-info">'Den<br>Fazla<br>Üye</div>
+                        </div>
+
+
+                    </div>
+                    <!-- end of counter -->
+
+                </div> <!-- end of text-container -->
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</div> <!-- end of counter -->
+<!-- end of about -->
+<!--Units-->
+<!-- Projects -->
+<div id="projects" class="filter">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">Birimlerimiz</div>
+
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="grid">
+                    @{
+                        var number = 0;
+                        @foreach (var item in Model)
+                        {
+                            number += 1;
+                            <div class="element-item development">
+                                <a class="popup-with-move-anim" href="#project-@number"><div class="element-item-overlay"><span>@item.UNIT_NAME</span></div><img src="@item.UNIT_IMG" alt="alternative"></a>
+                            </div>
+                            <div id="project-@number" class="lightbox-basic zoom-anim-dialog mfp-hide">
+                                <div class="row">
+                                    <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+                                    <div class="col-lg-8">
+                                        <img style="height:100%" class="img-fluid" src="@item.UNIT_IMG" alt="alternative">
+                                    </div> <!-- end of col -->
+                                    <div class="col-lg-4">
+                                        <h3>@item.UNIT_NAME</h3>
+                                        <hr class="line-heading">
+                                        <div style="width:100%">
+
+                                            <p>@item.UNIT_TEXT</p>
+
+
+                                        </div>
+
+                                        <a class="btn-solid-reg" href="#your-link">DETAILS</a> <a class="btn-outline-reg mfp-close as-button" href="#projects">BACK</a>
+                                    </div> <!-- end of col -->
+                                </div> <!-- end of row -->
+                            </div>
+
+                        }
+
+                    }
+
+
+                </div> <!-- end of grid -->
+                <!-- end of filter -->
+
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+
+</div> <!-- end of filter -->
+<!-- end of projects -->
+<!-- end of project lightboxes -->
+<!--Units end-->
+<!-- Details 1 -->
+<div id="details" class="accordion">
+    <div class="area-1">
+    </div><!-- end of area-1 on same line and no space between comments to eliminate margin white space --><div class="area-2">
+
+        <!-- Accordion -->
+        <div class="accordion-container" id="accordionOne">
+            <h2>Sık Sorulan Sorular</h2>
+            <div class="item">
+                <div id="headingOne">
+                    <span data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" role="button">
+                        <span class="circle-numbering">1</span><span class="accordion-title">Lorem ipsum dolor sit amet.</span>
+                    </span>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionOne">
+                    <div class="accordion-body">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus saepe fugiat nisi nemo incidunt deleniti illo laboriosam eligendi explicabo possimus.
+                    </div>
+                </div>
+            </div> <!-- end of item -->
+
+            <div class="item">
+                <div id="headingTwo">
+                    <span class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" role="button">
+                        <span class="circle-numbering">2</span><span class="accordion-title">Lorem ipsum dolor sit amet.</span>
+                    </span>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionOne">
+                    <div class="accordion-body">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus nisi cumque ut deserunt, iure iste tempora magni accusamus enim ipsam!
+
+                    </div>
+                </div>
+            </div> <!-- end of item -->
+
+            <div class="item">
+                <div id="headingThree">
+                    <span class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" role="button">
+                        <span class="circle-numbering">3</span><span class="accordion-title">Lorem ipsum dolor sit amet.</span>
+                    </span>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionOne">
+                    <div class="accordion-body">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ab ullam inventore corporis dolorem eos ipsam libero vel veritatis odio.
+                    </div>
+                </div>
+            </div> <!-- end of item -->
+
+        </div> <!-- end of accordion-container -->
+        <!-- end of accordion -->
+
+    </div> <!-- end of area-2 -->
+</div> <!-- end of accordion -->
+<!-- end of details 1 -->
+<!-- Contact -->
+<div id="contact" class="form-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="text-container">
+                    <div class="section-title">Bizimle İletişime Geçiniz...</div>
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, expedita.</p>
+                    <ul class="list-unstyled li-space-lg">
+                        <li class="address"><i class="fas fa-map-marker-alt"></i>Yıldız Teknik Üniversitesi Davutpaşa Kampüsü</li>
+
+                        <li><i class="fas fa-envelope"></i><a href="mail@hotmail.com">xxxxxxxxx@gmail.com</a></li>
+                    </ul>
+                    <h3>Sosyal Medya Hesaplarımız</h3>
+
+                    <span class="fa-stack">
+                        <a href="https://www.google.com">
+                            <span class="hexagon"></span>
+                            <i class="fab fa-facebook-f fa-stack-1x"></i>
+                        </a>
+                    </span>
+                    <span class="fa-stack">
+                        <a href="#your-link">
+                            <span class="hexagon"></span>
+                            <i class="fab fa-twitter fa-stack-1x"></i>
+                        </a>
+                    </span>
+                    <span class="fa-stack">
+                        <a href="#your-link">
+                            <span class="hexagon"></span>
+                            <i class="fab fa-pinterest fa-stack-1x"></i>
+                        </a>
+                    </span>
+                    <span class="fa-stack">
+                        <a href="#your-link">
+                            <span class="hexagon"></span>
+                            <i class="fab fa-instagram fa-stack-1x"></i>
+                        </a>
+                    </span>
+                    <span class="fa-stack">
+                        <a href="#your-link">
+                            <span class="hexagon"></span>
+                            <i class="fab fa-linkedin-in fa-stack-1x"></i>
+                        </a>
+                    </span>
+
+                </div> <!-- end of text-container -->
+            </div> <!-- end of col -->
+            <div class="col-lg-6">
+
+                <!-- Contact Form -->
+                <form id="contactForm" data-toggle="validator" data-focus="false">
+                    <div class="form-group">
+                        <input type="text" class="form-control-input" id="cname" required>
+                        <label class="label-control" for="cname">İsim</label>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control-input" id="cemail" required>
+                        <label class="label-control" for="cemail">Email</label>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control-textarea" id="cmessage" required></textarea>
+                        <label class="label-control">Mesajınız</label>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" id="btnclicked" class="form-control-submit-button">Gönder</button>
+                    </div>
+
+                </form>
+                <!-- end of contact form -->
+
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</div> <!-- end of form-2 -->
+<!-- end of contact -->
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#btnclicked").click(function () {
+                var vm = {
+                    NAME: $("#cname").val(),
+                    MAIL: $("#cemail").val(),
+                    MESSAGE: $("#cmessage").val(),
+                }
+
+                $.ajax({
+                    url: "/",
+                    method: "post",
+                    data: vm,
+                    success: function (response) {
+                        if (response.isOk) {
+                            alert(response.message)
+                            
+                            
+                            };
+                            
+                        }
+                        
+
+
+                    
+
+                });
+
+
+            
+
+        });
+
+
+
+    </script>
+
+
+
+}
+

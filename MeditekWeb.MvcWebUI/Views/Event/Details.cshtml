@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using  MeditekWeb.Models.Entity
+@model Event
+<!-- Preloader -->
+<div class="spinner-wrapper">
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>
+<!-- end of preloader -->
+
+<!-- Header -->
+<header id="header" class="header">
+    <div class="header-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-container">
+                        
+
+                        <h1><span id="js-rotating">@Model.EVENT_NAME,Etkinliğimiz,Hakkında</span></h1>
+                        
+
+
+
+
+
+                        <a class="btn-solid-lg page-scroll" href="#intro">İletişim</a>
+                    </div>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of header-content -->
+</header> <!-- end of header -->
+<!-- end of header -->
+<div class="container">
+    <div class="card" style="margin:10px">
+        <img class="card-img-top" style="height:25rem;" src="@Model.EVENT_IMG" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@Model.EVENT_NAME</h5>
+            <p class="card-text">@Model.EVENT_TEXT</p>
+            <p class="card-text"><small class="text-muted">Tarih: @Model.EVENT_DATETIME</small></p>
+        </div>
+
+
+    </div>
+</div>
+
+

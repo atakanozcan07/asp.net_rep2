@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "Icra";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using MeditekWeb.Models.Entity
+@model List<Member>
+<!-- Header -->
+<header id="header" class="header">
+    <div class="header-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-container">
+                        <h1><span id="js-rotating">Yönetim, Ekibimizi, Tanıyın...</span></h1>
+                        <p class="p-heading p-large">
+
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae iusto eveniet vel velit necessitatibus impedit minima repellendus cum architecto consequatur!
+                        </p>
+                        <a class="btn-solid-lg page-scroll" href="#intro">İletişim</a>
+                    </div>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of header-content -->
+</header> <!-- end of header -->
+<!-- end of header -->
+<!-- Team -->
+<div class="basic-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Yönetim Ekibimiz</h2>
+                <p class="p-heading">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem, accusamus?</p>
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+        <div class="row">
+            <div class="col-lg-12">
+
+                @foreach (var item in Model)
+                {
+                    @if (item.TEAM_ID == 2)
+                    {
+                        <!-- Team Member -->
+                        <div class="team-member">
+                            <div class="image-wrapper">
+                                <img class="img-fluid" src="@item.MEMBER_IMG" alt="alternative">
+                            </div> <!-- end of image-wrapper -->
+                            <p class="p-large">@item.MEMBER_NAME-@item.MEMBER_SURNAME</p>
+                            <p class="job-title">@item.MEMBER_ASSIGNMENT</p>
+                            <span class="social-icons">
+                                <span class="fa-stack">
+                                    <a href="#your-link">
+                                        <span class="hexagon"></span>
+                                        <i class="fab fa-facebook-f fa-stack-1x" href="@item.MEMBER_LINKEDIN"></i>
+                                    </a>
+                                </span>
+                                <span class="fa-stack">
+                                    <a href="#your-link">
+                                        <span class="hexagon"></span>
+                                        <i class="fab fa-twitter fa-stack-1x" href="@item.MEMBER_MAIL"></i>
+                                    </a>
+                                </span>
+                            </span>
+                        </div> <!-- end of team-member -->
+                        <!-- end of team member -->
+
+
+                    }
+
+
+                }

@@ -1,0 +1,206 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using MeditekWeb.Models.Entity
+@model List<Event>
+@section styles{
+<style>
+
+  
+    /**********************************/
+    /********** Main News CSS *********/
+    /**********************************/
+    .main-news {
+        position: relative;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+        .main-news .col-md-4 {
+            margin-bottom: 30px;
+        }
+
+        .main-news .mn-img {
+            position: relative;
+            overflow: hidden;
+        }
+
+            .main-news .mn-img img {
+                width: 100%;
+            }
+
+            .main-news .mn-img:hover img {
+                filter: blur(3px);
+                -webkit-filter: blur(3px);
+            }
+
+        .main-news .mn-title {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 15px 10px 15px 20px;
+            background-image: linear-gradient(rgba(0, 0, 0, .0), rgba(0, 0, 0, .3), rgba(0, 0, 0, .9));
+            display: flex;
+            align-items: flex-end;
+        }
+
+            .main-news .mn-title a {
+                display: block;
+                width: 100%;
+                color: #ffffff;
+                font-size: 18px;
+                font-weight: 400;
+                transition: .3s;
+            }
+
+                .main-news .mn-title a:hover {
+                    color: #FF6F61;
+                }
+
+        .main-news .mn-list {
+            margin-bottom: 30px;
+        }
+
+            .main-news .mn-list h2 {
+                color: #000000;
+                margin-bottom: 30px;
+                padding-bottom: 15px;
+                border-bottom: 3px double #000000;
+            }
+
+            .main-news .mn-list ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+                .main-news .mn-list ul li {
+                    margin: 0 0 12px 22px;
+                }
+
+                    .main-news .mn-list ul li:last-child {
+                        margin-bottom: 0;
+                    }
+
+                    .main-news .mn-list ul li a {
+                        color: #000000;
+                        display: block;
+                        line-height: 23px;
+                    }
+
+                    .main-news .mn-list ul li::before {
+                        position: absolute;
+                        content: '\f061';
+                        font-family: 'Font Awesome 5 Free';
+                        font-weight: 900;
+                        color: #000000;
+                        left: 1px;
+                    }
+
+                    .main-news .mn-list ul li a:hover {
+                        color: #FF6F61;
+                    }
+    input[type=text] {
+        width: 130px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+        /* When the input field gets focus, change its width to 100% */
+        input[type=text]:focus {
+            width: 70%;
+        }
+
+</style>
+ }
+<!-- Preloader -->
+<div class="spinner-wrapper">
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>
+<!-- end of preloader -->
+<!-- Header -->
+<header id="header" class="header">
+    <div class="header-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-container">
+                        <h1><span id="js-rotating">Biz Kimiz?, Misyonumuz, Vizyonumuz</span></h1>
+                        <p class="p-heading p-large">
+
+                            Misyonumuz :
+
+
+                            Başta mühendislik, fen bilimleri ve temel bilimler alanlarında öğrenim gören öğrencileri, sağlık başlığı altında toplayarak kendi disiplinleri doğrultusunda medikal alanda donanım sahibi bireyler haline getirmek. Yeni ürünler ortaya koyarak bu alanda Türkiye’yi temsil etmek.
+
+                            Vizyonumuz :
+
+                            MEDİTEK kulübü, farklı disiplinlerden öğrencileri (yazılım, genetik, makine, elektronik, biyoloji, kimya, tıp vs.) bir araya getirip sağlık alanına yönlendirerek medikal teknoloji alanındaki eksiklikleri gidermeyi amaçlamış bir kuruluştur.
+                        </p>
+                        <a class="btn-solid-lg page-scroll" href="#intro">İletişim</a>
+                    </div>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of header-content -->
+</header> <!-- end of header -->
+<!-- end of header -->
+<!-- Main News Start-->
+
+
+<div class="main-news m-3">
+    
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="mn-list">
+                <h2>Read More</h2>
+                <div class="list-group" style="border-radius:10px">
+                    
+                    <a href="#" style="text-decoration:none" class="list-group-item list-group-item-action active">
+                        En Çok Tıklananlar
+                    </a>
+                    <a href="#" style="text-decoration:none" class="list-group-item list-group-item-action active">
+                        En Yeniler
+                    </a>
+                    <a href="#" style="text-decoration:none" class="list-group-item list-group-item-action active">
+                        A-Z'ye sırala
+                    </a>
+                    <a href="#" style="text-decoration:none" class="list-group-item list-group-item-action active">
+                        Z-A'ye sırala
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="mn-img">
+                            <img style="height:150px" src="@item.EVENT_IMG" />
+                            <div class="mn-title">
+                                <a href="/event/details/@item.ID">@item.EVENT_NAME</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+
+            </div>
+        </div>
+
+
+    </div>
+    
+</div>
+<!-- Main News End-->
